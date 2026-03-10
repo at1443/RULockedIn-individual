@@ -1,62 +1,68 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content=
-        "width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="signUp.css">
-        <title>Sign Up</title>
+        <link rel="stylesheet" href="index.css">
+        <title>Sign Up – Frog Prompt</title>
     </head>
 <body>
+    <nav>
+        <div class="heading">Frog Prompt</div>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li id="nav-signup"><a href="signUp.html">Sign Up</a></li>
+                <li id="nav-login"><a href="logIn.html">Login</a></li>
+                <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <section class="contact" id="contact">
         <div class="content">
-            <div class="title"><span>Sign Up</span></div>
+            <div class="title"><span>Create Account</span></div>
             <div class="contactMenu">
                 <div class="input1">
-                    <div class="label1">Your Name</div>
+                    <div class="label1"><label for="newUserName">Username</label></div>
                     <div class="input2">
                         <input type="text" id="newUserName"
-                            placeholder="Enter your Name here">
+                            placeholder="Choose a username">
                     </div>
                     <div class="label1">
-                        <label>Your Email</label>
+                        <label for="newUserEmail">Email</label>
                     </div>
                     <div class="input2">
-                        <input type="text" id="newUserEmail"
-                            placeholder="Enter your Email here">
+                        <input type="email" id="newUserEmail"
+                            placeholder="Enter your email">
                     </div>
                     <div class="label1">
-                        <label>Your Password</label>
+                        <label for="newUserPassword1">Password</label>
                     </div>
                     <div class="input2">
-                        <input type="text" id="newUserPassword1"
-                            placeholder="Enter your Password here">
+                        <input type="password" id="newUserPassword1"
+                            placeholder="At least 8 characters">
                     </div>
                     <div class="label1">
-                        <label>Confirm Password</label>
+                        <label for="newUserPassword2">Confirm Password</label>
                     </div>
                     <div class="input2">
-                        <input type="text" id="newUserPassword2"
-                            placeholder="Enter your Password here">
+                        <input type="password" id="newUserPassword2"
+                            placeholder="Re-enter your password">
                     </div>
+                    <div id="errorMessage" style="color:red;margin-top:8px;font-size:14px;min-height:20px;"></div>
                     <div class="button">
-                        <button onclick="saveInputSU()">SignUp</button>
+                        <button class="signup-btn" onclick="submitSignup()">Sign Up</button>
                     </div>
-                    <p id="errorMessage"></p>
-                </div>
-                <div class="input3">
-                    <div class="rightside1">
-                        <div class="title1">
-                        
-                        </div>
-                    </div>
+                    <p style="margin-top:12px;font-size:14px;">Already have an account? <a href="logIn.html">Log in</a></p>
                 </div>
             </div>
         </div>
     </section>
-    
-<script src="backend.js"></script>
+
+<script src="client.js"></script>
 </body>
 </html>

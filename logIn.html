@@ -1,50 +1,64 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content=
-        "width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="logIn.css">
-        <title>Sign Up</title>
+        <link rel="stylesheet" href="index.css">
+        <title>Login – Frog Prompt</title>
     </head>
 <body>
+    <nav>
+        <div class="heading">Frog Prompt</div>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li id="nav-signup"><a href="signUp.html">Sign Up</a></li>
+                <li id="nav-login"><a href="logIn.html">Login</a></li>
+                <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <section class="contact" id="contact">
         <div class="content">
             <div class="title"><span>Login</span></div>
             <div class="contactMenu">
                 <div class="input1">
                     <div class="label1">
-                        <label>Your Email</label>
+                        <label for="existingUserEmail">Email</label>
                     </div>
                     <div class="input2">
-                        <input type="text" id="existingUserEmail"
-                            placeholder="Enter your Email here">
+                        <input type="email" id="existingUserEmail"
+                            placeholder="Enter your email">
                     </div>
                     <div class="label1">
-                        <label>Your Password</label>
+                        <label for="existingUserPassword">Password</label>
                     </div>
                     <div class="input2">
-                        <input type="text" id="existingUserPassword"
-                            placeholder="Enter your Password here">
+                        <input type="password" id="existingUserPassword"
+                            placeholder="Enter your password">
                     </div>
-                    
+
+                    <div id="errorMessage" style="color:red;margin-top:8px;font-size:14px;min-height:20px;"></div>
+
                     <div class="button">
-                        <button onclick="saveInputLI()">Login</button>
+                        <button onclick="submitLogin()">Login</button>
                     </div>
-                </div>
-                <div class="input3">
-                    <div class="rightside1">
-                        <div class="title1">
-                        
-                        </div>
+
+                    <div style="margin-top:16px;">
+                        <a href="/auth/cas" class="cas-btn" style="display:inline-block;padding:8px 16px;background-color:#cc0033;color:white;border-radius:8px;text-decoration:none;font-size:14px;font-weight:bold;">
+                            Login with Rutgers CAS
+                        </a>
                     </div>
+
+                    <p style="margin-top:12px;font-size:14px;">Don't have an account? <a href="signUp.html">Sign up</a></p>
                 </div>
             </div>
         </div>
     </section>
-    
-<script src="index.js"></script>
+
+<script src="client.js"></script>
 </body>
 </html>

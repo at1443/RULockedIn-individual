@@ -1,18 +1,29 @@
 {
-  "name": "landingpage",
+  "name": "rulockedin",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Web UI for LLM inference with user authentication",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test:unit": "jasmine",
+    "test:cucumber": "cucumber-js",
+    "test:e2e": "node tests/e2e.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "dotenv": "^17.3.1",
-    "express": "^5.2.1",
-    "monodb": "^1.5.1"
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongodb": "^6.8.0",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "jasmine": "^5.1.0",
+    "puppeteer": "^22.12.0"
   }
 }

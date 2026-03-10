@@ -21,8 +21,10 @@
         <div class="navbar">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="signUp.html">Sign Up</a></li>
-                <li><a href="logIn.html">Login</a></li>
+                <li id="nav-signup"><a href="signUp.html">Sign Up</a></li>
+                <li id="nav-login"><a href="logIn.html">Login</a></li>
+                <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
+                <li id="nav-greeting" style="color:white;font-size:20px;font-weight:500;padding:8px 15px;"></li>
             </ul>
         </div>
     </nav>
@@ -53,7 +55,7 @@
         </div> 
 
 
-    <script src="bakend.js"></script>
+    <script src="client.js"></script>
 </body>
 
 </html>
