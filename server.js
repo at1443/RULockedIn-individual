@@ -5,15 +5,11 @@ const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const path = require('path');
-const https = require('https');
-const { parseStringPromise } = require('xml2js');
 const { validateSignupInput, validateLoginInput } = require('./lib/validators');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
-const CAS_BASE = 'https://cas.rutgers.edu';
-
 // ── Middleware ────────────────────────────────────────────────────────────────
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,17 +31,6 @@ const client = new MongoClient(process.env.MONGO_URI, {
 });
 
 let users; // userLoginData collection
-
-// ── CAS helper ────────────────────────────────────────────────────────────────
-function httpsGet(url) {
-    return new Promise((resolve, reject) => {
-        https.get(url, (res) => {
-            let data = '';
-            res.on('data', chunk => { data += chunk; });
-            res.on('end', () => resolve(data));
-        }).on('error', reject);
-    });
-}
 
 // ── Routes ────────────────────────────────────────────────────────────────────
 
@@ -114,57 +99,6 @@ function meHandler(req, res) {
     }
 }
 
-// GET /auth/cas — redirect to Rutgers CAS login
-function casRedirectHandler(req, res) {
-    const serviceUrl = encodeURIComponent(`${BASE_URL}/auth/cas/callback`);
-    res.redirect(`${CAS_BASE}/login?service=${serviceUrl}`);
-}
-
-// GET /auth/cas/callback — Rutgers CAS validates ticket and returns user's netID
-async function casCallbackHandler(req, res) {
-    const { ticket } = req.query;
-    if (!ticket) {
-        return res.redirect('/logIn.html?error=cas_no_ticket');
-    }
-
-    const serviceUrl = encodeURIComponent(`${BASE_URL}/auth/cas/callback`);
-    const validateUrl = `${CAS_BASE}/serviceValidate?ticket=${ticket}&service=${serviceUrl}`;
-
-    try {
-        const xml = await httpsGet(validateUrl);
-        const parsed = await parseStringPromise(xml);
-        const serviceResponse = parsed['cas:serviceResponse'];
-        const authSuccess = serviceResponse?.['cas:authenticationSuccess'];
-
-        if (!authSuccess) {
-            return res.redirect('/logIn.html?error=cas_failed');
-        }
-
-        const netId = authSuccess[0]['cas:user'][0];
-        const email = `${netId}@scarletmail.rutgers.edu`;
-
-        // Upsert: create account if first CAS login
-        await users.updateOne(
-            { email },
-            {
-                $setOnInsert: {
-                    name: netId,
-                    email,
-                    password: null, // CAS users have no local password
-                    createdAt: new Date()
-                }
-            },
-            { upsert: true }
-        );
-
-        req.session.user = { name: netId, email };
-        return res.redirect('/');
-    } catch (err) {
-        console.error('CAS validation error:', err);
-        return res.redirect('/logIn.html?error=cas_error');
-    }
-}
-
 // ── Start server ──────────────────────────────────────────────────────────────
 async function startServer() {
     try {
@@ -178,8 +112,6 @@ async function startServer() {
         app.post('/api/login', loginHandler);
         app.post('/api/logout', logoutHandler);
         app.get('/api/me', meHandler);
-        app.get('/auth/cas', casRedirectHandler);
-        app.get('/auth/cas/callback', casCallbackHandler);
 
         app.listen(PORT, () => {
             console.log(`Server running at http://localhost:${PORT}`);
