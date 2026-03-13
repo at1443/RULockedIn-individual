@@ -5,20 +5,16 @@ Pre-Requisites:
 =========================================================================================================
 Setup and Run:
 Step #1: Clone the GitHub repo onto your local:
-git clone repository_url_goes_here
-cd to RULockedIn
+git clone https://github.com/faithnyambane/RULockedIn.git
+cd RULockedIn
 
 Step #2: Install dependencies (cmd.exe on Windows or terminal on macOS/Linux):
 npm install
 
-Step #3: Create a .env file with the following MongoDB connection string
-(again, do this in cmd.exe or a terminal session):
-echo "MONGO_URI=mongodb+srv://sgw52_db_user:jGi2uFyYFnXE0Gfg@frogcluster.6aselgj.mongodb.net/?appName=frogCluster" > .env
-
-Step #4: Start the server with the following command:
+Step #3: Start the server with the following command:
 node server.js
 
-Step #5: Open the application in a browser:
+Step #4: Open the application in a browser:
 In the address bar, type the following: http://localhost:8080
 =========================================================================================================
 When done, keep in mind that exiting out of your browser does NOT stop the server. Node.js is still
