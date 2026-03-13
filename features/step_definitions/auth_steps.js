@@ -9,6 +9,8 @@
 const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const puppeteer = require('puppeteer');
 const assert = require('assert');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+require('dotenv').config();
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
 
@@ -18,6 +20,17 @@ let page;
 // ── Lifecycle ─────────────────────────────────────────────────────────────────
 
 Before(async () => {
+    // Clean up test account so signup scenario can always run fresh
+    const client = new MongoClient(process.env.MONGO_URI, {
+        serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true }
+    });
+    try {
+        await client.connect();
+        await client.db('dbs').collection('userLoginData').deleteOne({ email: 'testuser@example.com' });
+    } finally {
+        await client.close();
+    }
+
     browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -86,6 +99,11 @@ Then('I should see a {string} link in the navigation', async (linkText) => {
 Then('I should see a {string} link', async (linkText) => {
     const content = await page.content();
     assert.ok(content.includes(linkText), `Expected to find link text "${linkText}" on page`);
+});
+
+Then('I should see the login form', async () => {
+    await page.waitForSelector('#existingUserEmail');
+    await page.waitForSelector('#existingUserPassword');
 });
 
 Then('I should be redirected to the home page', async () => {

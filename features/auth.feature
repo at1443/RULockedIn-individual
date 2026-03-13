@@ -48,9 +48,9 @@ Feature: User Authentication
     Then I should see an error message "Password must be at least 8 characters."
 
   # ── Login ─────────────────────────────────────────────────────────────────────
-  Scenario: Login page has Rutgers CAS button
+  Scenario: Login page loads with email and password fields
     Given I am on the login page
-    Then I should see a "Login with Rutgers CAS" link
+    Then I should see the login form
 
   Scenario: Login fails with empty email
     Given I am on the login page
