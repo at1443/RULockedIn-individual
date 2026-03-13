@@ -153,9 +153,8 @@ async function fail(label, err) {
     try {
         await page.goto(`${BASE_URL}/logIn.html`, { waitUntil: 'domcontentloaded' });
         await page.waitForSelector('#existingUserEmail');
-        const casLink = await page.$('a.cas-btn');
-        if (!casLink) throw new Error('CAS login button not found');
-        await pass('Login page loads with CAS button');
+        await page.waitForSelector('#existingUserPassword');
+        await pass('Login page loads with email and password fields');
         passed++;
     } catch (e) {
         await fail('Navigate to Login page', e);
