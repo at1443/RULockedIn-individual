@@ -124,10 +124,10 @@ async function fail(label, err) {
 
     // ── Test 5: Successful sign up ────────────────────────────────────────────
     try {
-        await page.$eval('#newUserName',     el => { el.value = TEST_NAME; });
-        await page.$eval('#newUserEmail',    el => { el.value = TEST_EMAIL; });
-        await page.$eval('#newUserPassword1', el => { el.value = TEST_PASSWORD; });
-        await page.$eval('#newUserPassword2', el => { el.value = TEST_PASSWORD; });
+        await page.$eval('#newUserName',      (el, val) => { el.value = val; }, TEST_NAME);
+        await page.$eval('#newUserEmail',     (el, val) => { el.value = val; }, TEST_EMAIL);
+        await page.$eval('#newUserPassword1', (el, val) => { el.value = val; }, TEST_PASSWORD);
+        await page.$eval('#newUserPassword2', (el, val) => { el.value = val; }, TEST_PASSWORD);
 
         const buttons = await page.$$('button');
         for (const btn of buttons) {
@@ -188,8 +188,8 @@ async function fail(label, err) {
 
     // ── Test 8: Login with correct credentials ────────────────────────────────
     try {
-        await page.$eval('#existingUserEmail',    el => { el.value = TEST_EMAIL; });
-        await page.$eval('#existingUserPassword', el => { el.value = TEST_PASSWORD; });
+        await page.$eval('#existingUserEmail',    (el, val) => { el.value = val; }, TEST_EMAIL);
+        await page.$eval('#existingUserPassword', (el, val) => { el.value = val; }, TEST_PASSWORD);
 
         const buttons = await page.$$('button');
         for (const btn of buttons) {
