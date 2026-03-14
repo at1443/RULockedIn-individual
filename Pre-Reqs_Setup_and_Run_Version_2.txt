@@ -12,10 +12,13 @@ Step #2: Install dependencies in the command prompt or terminal,
 depending on what operating system you have on your computer:
 npm install
 
-Important note: You don't have to run npm install every single time you run. Only when changes are made to 
+Important note #1: You will get some warnings thrown at you when you do this. This is expected. This just means
+that some of the packages we're using have newer versions avaialble. You can safely ignore these and move on.
+
+Important note #2: You don't have to run npm install every single time you run. Only when changes are made to 
 package.json (i.e., someone removed or added a dependency). If something unexpectedly breaks, you can 
 always run npm install as a first step in troubleshooting. You can do it every single time, if you want, though.
-It might be overkill, but it also won't hurt anything. Whenever you clone the repo, though, you need to run it.
+It might be overkill, but it also won't hurt anything. Whenever you clone the repo, though, you do need to run it.
 
 Step #3: Start the server, in the project's root directory, with the following 
 command (this needs to be done every single time):
@@ -25,7 +28,11 @@ node server.js
 Step #4: Open the application in a browser:
 In the address bar, type the following: http://localhost:8080
 
-Step #5: Kill the server once you're done with your work. SEE BELOW.
+Important note: If, after you log in, Chrome, for example, alerts you that your account has been
+compromised, just ignore it. It should go without saying, but use dummy data with this project.
+Keep track of the fake email address and password, though. You'll use it in later iterations.
+
+Step #5: Kill the server once you're done with your work. SEE THE SECTION DIRECTLY BELOW THIS SENTENCE.
 =========================================================================================================
 When done, keep in mind that exiting out of your browser does NOT stop the server. Node.js is still
 running silently in the background and will continue to do so until you kill it. To kill it, go to the same terminal window 
