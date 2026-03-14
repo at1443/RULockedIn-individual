@@ -8,17 +8,25 @@ Step #1: Clone the GitHub repo onto your local:
 git clone https://github.com/faithnyambane/RULockedIn.git
 cd RULockedIn
 
-Step #2: Install dependencies (cmd.exe on Windows or terminal on macOS/Linux):
+Step #2: Install dependencies in the command prompt or terminal,
+depending on what operating system you have on your computer:
 npm install
 
-Step #3: Start the server with the following command:
+Important note: You don't have to run npm install every single time you run. Only when changes are made to 
+package.json (i.e., someone removed or added a dependency). If something unexpectedly breaks, you can 
+always run npm install as a first step in troubleshooting. You can do it every single time, if you want, though.
+It might be overkill, but it also won't hurt anything. Whenever you clone the repo, though, you need to run it.
+
+Step #3: Start the server with the following command (this needs to be done every single time):
 node server.js
 
 Step #4: Open the application in a browser:
 In the address bar, type the following: http://localhost:8080
+
+Step #5: Kill the server once you're done with your work. SEE BELOW.
 =========================================================================================================
 When done, keep in mind that exiting out of your browser does NOT stop the server. Node.js is still
-running in the background and will continue to do so until you kill it. To stop/kill it, go to the same terminal window 
+running silently in the background and will continue to do so until you kill it. To kill it, go to the same terminal window 
 where you ran "node server.js" and press Ctrl+C, if you're on Windows, Mac, or Linux.
 
 Alternatively, you can kill it by typing the following, which will work on both mac, windows, and linux:
@@ -27,12 +35,12 @@ npx kill-port 8080
 Note: Node will request that you install the kill-port@2.0.1 package, if it's not already installed. Type (y), without parentheses, and allow the installation to proceed.
 If successful, it should print the following message to the console/terminal/prompt: "Process on port 8080 killed"
 
-Specifically on either a Macintosh or Linux machine, but not on Windows: kill $(lsof -t -i:8080)
+Specifically, on either a Macintosh or Linux machine, but not on Windows, this command also does the trick: kill $(lsof -t -i:8080)
 =========================================================================================================
-Note 1: The routing table is defined in server.js
-Note 2: express.state serves all of the HTML/CSS/JS files from the root directory of the project.
-
-Rule of thumb: You should have two terminal windows open simultaneously:
+Note #1: The routing table is defined in server.js
+Note #2: express.static serves all of the HTML/CSS/JS files from the root directory of the project.
+=========================================================================================================
+Rule of thumb: You should ideally have two terminal windows open simultaneously:
 Terminal #1: Start the server by typing in node server.js
 Terminal #2: Run the tests, for example:
 npm run test:unit
