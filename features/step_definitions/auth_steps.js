@@ -21,7 +21,7 @@ let page;
 
 // ── Lifecycle ─────────────────────────────────────────────────────────────────
 
-Before(async () => {
+Before({ timeout: 30000 }, async () => {
     // Clean up test account so signup scenario can always run fresh
     const client = new MongoClient(process.env.MONGO_URI, {
         serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true }
@@ -40,7 +40,7 @@ Before(async () => {
     page = await browser.newPage();
 });
 
-After(async () => {
+After({ timeout: 30000 }, async () => {
     if (browser) await browser.close();
 });
 
