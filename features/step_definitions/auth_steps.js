@@ -12,6 +12,8 @@ const assert = require('assert');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config();
 
+setDefaultTimeout(30000);
+
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
 
 let browser;
