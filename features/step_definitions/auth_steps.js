@@ -6,13 +6,11 @@
  *   2. Run acceptance tests:    npm run test:cucumber
  */
 
-const { Given, When, Then, Before, After, setDefaultTimeout } = require('@cucumber/cucumber');
+const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const puppeteer = require('puppeteer');
 const assert = require('assert');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config();
-
-setDefaultTimeout(60000);
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
 
@@ -21,7 +19,7 @@ let page;
 
 // ── Lifecycle ─────────────────────────────────────────────────────────────────
 
-Before({ timeout: 60000 }, async () => {
+Before(async () => {
     // Clean up test account so signup scenario can always run fresh
     const client = new MongoClient(process.env.MONGO_URI, {
         serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true }
@@ -40,7 +38,7 @@ Before({ timeout: 60000 }, async () => {
     page = await browser.newPage();
 });
 
-After({ timeout: 60000 }, async () => {
+After(async () => {
     if (browser) await browser.close();
 });
 
