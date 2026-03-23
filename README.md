@@ -36,17 +36,25 @@ Acceptance Criteria: A new user clicks join as guest and are able to access the 
 Key functions for Iteration 2:
 
 Feature: User can chat with LLM
+
 User Story: As a logged-in user, I want to type a question and receive a response from an LLM so that I can get answers to my questions.
+
 Acceptance Criteria: The logged-in user is redirected to the chat page where they see a text input box and a send button. The user types their question into the text input box and clicks the send button or presses Enter. The user's message appears in the chat window. The LLM processes the message and returns a response which is displayed below the user's message in the chat window. If the LLM fails to respond, an error message is displayed to the user.
 
 Feature: User can view conversation history
+
 User Story: As a logged-in user, I want to see a list of my past conversations so that I can review previous answers the LLM gave me.
+
 Acceptance Criteria: The logged-in user sees a sidebar or history button on the chat page. The user clicks on the history button and sees a list of all their past conversations with a preview of the first message and a timestamp. The user clicks on a past conversation and the full conversation with all messages and LLM responses is displayed in the chat window. Conversations are saved automatically when the user sends messages and persist between login sessions.
 
 Feature: User can search conversation history
+
 User Story: As a logged-in user, I want to search through my past conversations by keyword so that I can quickly find specific topics or answers.
+
 Acceptance Criteria: The user sees a search bar on the conversation history area. The user types a keyword into the search bar and presses Enter or clicks the search button. The conversation list filters to show only conversations that contain the keyword. The user can click on a search result to view the full conversation. If no results are found a "No results found" message is displayed. Clearing the search bar shows all conversations again.
 
 Feature: User can continue a previous conversation
+
 User Story: As a logged-in user, I want to select a past conversation and continue chatting in it so that the LLM remembers the context of what we already discussed.
+
 Acceptance Criteria: The user opens a past conversation from the conversation history list. The full previous conversation is loaded in the chat window showing all prior messages. The user types a new message and clicks send. The LLM receives the previous conversation context along with the new message and responds with awareness of the prior conversation. The new messages are appended and saved to that same conversation. The conversation's timestamp and preview updates in the history list.
