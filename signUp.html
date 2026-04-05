@@ -1,14 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="signUp.css">
-        <link rel="stylesheet" href="index.css">
-        <title>Sign Up – Frog Prompt</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signUp.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Sign Up – Frog Prompt</title>
+</head>
+
 <body>
     <nav>
         <div class="heading">Frog Prompt</div>
@@ -17,6 +18,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li id="nav-signup"><a href="signUp.html">Sign Up</a></li>
                 <li id="nav-login"><a href="logIn.html">Login</a></li>
+                <li id="nav-chat" style="display:none;"><a href="chat.html">Chat</a></li>
                 <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
             </ul>
         </div>
@@ -29,40 +31,38 @@
                 <div class="input1">
                     <div class="label1"><label for="newUserName">Username</label></div>
                     <div class="input2">
-                        <input type="text" id="newUserName"
-                            placeholder="Choose a username">
+                        <input type="text" id="newUserName" placeholder="Choose a username">
                     </div>
                     <div class="label1">
                         <label for="newUserEmail">Email</label>
                     </div>
                     <div class="input2">
-                        <input type="email" id="newUserEmail"
-                            placeholder="Enter your email">
+                        <input type="email" id="newUserEmail" placeholder="Enter your email">
                     </div>
                     <div class="label1">
                         <label for="newUserPassword1">Password</label>
                     </div>
                     <div class="input2">
-                        <input type="password" id="newUserPassword1"
-                            placeholder="At least 8 characters">
+                        <input type="password" id="newUserPassword1" placeholder="At least 8 characters">
                     </div>
                     <div class="label1">
                         <label for="newUserPassword2">Confirm Password</label>
                     </div>
                     <div class="input2">
-                        <input type="password" id="newUserPassword2"
-                            placeholder="Re-enter your password">
+                        <input type="password" id="newUserPassword2" placeholder="Re-enter your password">
                     </div>
                     <div id="errorMessage" style="color:red;margin-top:8px;font-size:14px;min-height:20px;"></div>
                     <div class="button">
                         <button class="signup-btn" onclick="submitSignup()">Sign Up</button>
                     </div>
-                    <p style="margin-top:12px;font-size:14px;">Already have an account? <a href="logIn.html">Log in</a></p>
+                    <p style="margin-top:12px;font-size:14px;">Already have an account? <a href="logIn.html">Log in</a>
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-<script src="client.js"></script>
+    <script src="client.js"></script>
 </body>
+
 </html>

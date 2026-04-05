@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat – Frog Prompt</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav>
+        <div class="heading">Frog Prompt</div>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li id="nav-signup"><a href="signUp.html">Sign Up</a></li>
+                <li id="nav-login"><a href="logIn.html">Login</a></li>
+                <li id="nav-chat"><a href="chat.html">Chat</a></li>
+                <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
+                <li id="nav-greeting" style="color:white;font-size:20px;font-weight:500;padding:8px 15px;"></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="chat-page">
+        <aside class="chat-sidebar">
+            <h2>Conversation History</h2>
+
+            <!-- Search bar for past conversations -->
+            <div class="chat-search-row">
+                <input type="text" id="historySearch" placeholder="Search history..." oninput="searchConversations()">
+                <button onclick="searchConversations()">Search</button>
+            </div>
+
+            <!-- Holds all saved conversations -->
+            <div id="conversationList" class="conversation-list"></div>
+        </aside>
+
+        <main class="chat-main">
+            <div class="chat-header">
+                <h1>Ask Frog Prompt</h1>
+                <button id="newChatBtn" onclick="startNewConversation()">New Chat</button>
+            </div>
+
+            <!-- Shows selected conversation messages -->
+            <div id="chatWindow" class="chat-window"></div>
+
+            <!-- Error message area -->
+            <div id="chatError" style="color:red; min-height:20px; margin-top:8px;"></div>
+
+            <!-- Message input area -->
+            <div class="chat-input-row">
+                <input type="text" id="chatInput" placeholder="Type your question here...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="client.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('chatInput');
+
+            // Send on Enter key
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            loadConversations();
+        });
+    </script>
+</body>
+
+</html>

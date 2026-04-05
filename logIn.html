@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="logIn.css">
-        <link rel="stylesheet" href="index.css">
-        <title>Login – Frog Prompt</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="logIn.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Login – Frog Prompt</title>
+</head>
+
 <body>
     <nav>
         <div class="heading">Frog Prompt</div>
@@ -16,6 +18,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li id="nav-signup"><a href="signUp.html">Sign Up</a></li>
                 <li id="nav-login"><a href="logIn.html">Login</a></li>
+                <li id="nav-chat"><a href="chat.html">Chat</a></li>
                 <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
             </ul>
         </div>
@@ -30,15 +33,13 @@
                         <label for="existingUserEmail">Email</label>
                     </div>
                     <div class="input2">
-                        <input type="email" id="existingUserEmail"
-                            placeholder="Enter your email">
+                        <input type="email" id="existingUserEmail" placeholder="Enter your email">
                     </div>
                     <div class="label1">
                         <label for="existingUserPassword">Password</label>
                     </div>
                     <div class="input2">
-                        <input type="password" id="existingUserPassword"
-                            placeholder="Enter your password">
+                        <input type="password" id="existingUserPassword" placeholder="Enter your password">
                     </div>
 
                     <div id="errorMessage" style="color:red;margin-top:8px;font-size:14px;min-height:20px;"></div>
@@ -47,12 +48,14 @@
                         <button onclick="submitLogin()">Login</button>
                     </div>
 
-                    <p style="margin-top:12px;font-size:14px;">Don't have an account? <a href="signUp.html">Sign up</a></p>
+                    <p style="margin-top:12px;font-size:14px;">Don't have an account? <a href="signUp.html">Sign up</a>
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-<script src="client.js"></script>
+    <script src="client.js"></script>
 </body>
+
 </html>

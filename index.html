@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content=
-        "width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Frog Prompt Landing Page</title>
 </head>
@@ -13,9 +12,8 @@
 <body>
     <nav>
         <div class="heading">Frog Prompt</div>
-        <span class="sideMenuButton" 
-            onclick="openNavbar()">
-            
+        <span class="sideMenuButton" onclick="openNavbar()">
+
         </span>
 
         <div class="navbar">
@@ -23,6 +21,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li id="nav-signup"><a href="signUp.html">Sign Up</a></li>
                 <li id="nav-login"><a href="logIn.html">Login</a></li>
+                <li id="nav-chat" style="display:none;"><a href="chat.html">Chat</a></li>
                 <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
                 <li id="nav-greeting" style="color:white;font-size:20px;font-weight:500;padding:8px 15px;"></li>
             </ul>
@@ -32,27 +31,27 @@
 
     <!-- Content -->
     <video autoplay muted loop id="myVideo">
-    <source src="swamp.mp4" type="video/mp4">
+        <source src="swamp.mp4" type="video/mp4">
     </video>
-        <div class="Title">
-            <h1>Welcome to Frog Prompt!</h1>
-        </div>
+    <div class="Title">
+        <h1>Welcome to Frog Prompt!</h1>
+    </div>
 
-        <div class="thoughtCloud">
-            <img src="cloud2.png" width="125px">
-        </div>
+    <div class="thoughtCloud">
+        <img src="cloud2.png" width="125px">
+    </div>
 
-        <div class="frog">
-            <img src="frog2.png">
+    <div class="frog">
+        <img src="frog2.png">
 
-            <div class="hoverText">
+        <div class="hoverText">
             <h1>I wish I had a little hat...</h1>
-            </div>
         </div>
+    </div>
 
-        <div class="prompt">
-            <input type="text" placeholder="Ask away..." style="background-color: rgb(211,249,188)"size="100">
-        </div> 
+    <div class="prompt">
+        <input type="text" placeholder="Ask away..." style="background-color: rgb(211,249,188)" size="100">
+    </div>
 
 
     <script src="client.js"></script>
