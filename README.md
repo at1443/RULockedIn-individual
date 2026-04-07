@@ -1,7 +1,5 @@
 # RULockedIn
 
-USE FOR DEMO: https://michael-unswilled-florrie.ngrok-free.dev/logIn.html
-
 # 🚀 Frog Prompt – Setup & Run Guide (Team)
 
 This project is a full-stack chat app using:
@@ -12,7 +10,7 @@ This project is a full-stack chat app using:
 
 ---
 
-# 🧑‍💻 Option 1: Local Setup (Recommended for Team)
+# Local Setup (Recommended for Team)
 
 Each teammate runs the app on their own machine.
 
@@ -27,6 +25,7 @@ cd RULockedIn
 
 ```bash
 npm install
+npm install node-fetch@2
 ```
 
 ## 3. Create `.env` file
@@ -34,10 +33,11 @@ npm install
 Add:
 
 ```env
-MONGO_URI=your_mongodb_connection
-SESSION_SECRET=your_secret
+MONGO_URI=mongodb+srv://sgw52_db_user:30713131@frogcluster.6aselgj.mongodb.net/?appName=frogCluster
+SESSION_SECRET= (you can use any password for this)
 OLLAMA_URL=http://localhost:11434/api/chat
 OLLAMA_MODEL=phi3
+PORT = 8080
 ```
 
 ---
@@ -64,7 +64,7 @@ node server.js
 
 ## 6. Open the app
 
-```text
+```use this link on your web-browser
 http://localhost:8080/chat.html
 ```
 
@@ -74,126 +74,6 @@ http://localhost:8080/chat.html
 
 Each teammate can now use the app independently.
 
----
-
-# 🌐 Option 2: Demo Setup (Share with Others)
-
-Use this if you want someone else to access your app from their device.
-
-## 1. Start everything locally
-
-Terminal 1:
-
-```bash
-ollama run phi3
-```
-
-Terminal 2:
-
-```bash
-node server.js
-```
-
----
-
-## 2. Start ngrok
-
-```bash
-ngrok http 8080
-```
-
----
-
-## 3. Share the link
-
-Send:
-
-```text
-https://your-ngrok-url/chat.html
-```
-
-⚠️ Notes:
-
-* Keep all terminals running
-* Link changes each time ngrok restarts
-
----
-
-# ⚠️ Important Notes
-
-## Ollama
-
-* Must be running on the same machine as the server
-* Uses local API: `http://localhost:11434`
-* No internet required for model once installed
-
----
-
-## Common Issues
-
-### ❌ "LLM not connected"
-
-* Run:
-
-```bash
-ollama run phi3
-```
-
----
-
-### ❌ "Cannot connect to server"
-
-* Make sure:
-
-```bash
-node server.js
-```
-
-is running
-
----
-
-### ❌ ngrok not working
-
-* Restart:
-
-```bash
-ngrok http 8080
-```
-
----
-
-### ❌ Dependencies missing
-
-```bash
-npm install
-```
-
----
-
-# 🧠 How It Works
-
-```text
-Browser → Express Server → Ollama (phi3) → Response
-```
-
----
-
-# 🚀 Optional: Deployment (Advanced)
-
-For a permanent public site:
-
-* Deploy backend on Render / Railway
-* Replace local Ollama with hosted model OR
-* Host Ollama on same server
-
----
-
-# 👥 Team Workflow
-
-* Work on feature branches (`test-iterations`, etc.)
-* Never push directly to `main`
-* Use pull + merge after testing
 
 ---
 
