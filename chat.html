@@ -7,6 +7,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat – Frog Prompt</title>
     <link rel="stylesheet" href="index.css">
+    <style>
+        /* ── Compare modal overlay ── */
+        #compareModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #compareModalBox {
+            background: white;
+            padding: 28px 32px;
+            border-radius: 16px;
+            min-width: 340px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        #compareModalBox h2 { margin-top: 0; }
+        #compareModalBox select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 16px 0;
+            border-radius: 8px;
+            border: 1px solid #8cc099;
+            font-size: 14px;
+        }
+        #compareModalBox button {
+            margin: 4px;
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #startCompareBtn  { background: #8cc099; color: white; font-weight: bold; }
+        #cancelCompareBtn { background: #eee; }
+
+        /* ── Compare banner ── */
+        #compareBanner {
+            display: none;
+            background: #8cc099;
+            color: white;
+            text-align: center;
+            padding: 6px 12px;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* ── History tabs ── */
+        .history-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .history-tabs button {
+            flex: 1;
+            padding: 6px;
+            border-radius: 8px;
+            border: 1px solid #8cc099;
+            background: white;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .history-tabs button.active {
+            background: #8cc099;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* ── Model select in input row ── */
+        #modelSelect {
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #8cc099;
+            font-size: 14px;
+            background: white;
+            min-width: 140px;
+        }
+
+        /* ── Compare button ── */
+        #compareBtn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid #8cc099;
+            background: #f4fff1;
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        #compareBtn:hover { background: #8cc099; color: white; }
+    </style>
 </head>
 
 <body>
@@ -17,42 +111,71 @@
                 <li><a href="index.html">Home</a></li>
                 <li id="nav-signup"><a href="signUp.html">Sign Up</a></li>
                 <li id="nav-login"><a href="logIn.html">Login</a></li>
-                <li id="nav-chat"><a href="chat.html">Chat</a></li>
+                <li id="nav-chat"><a href="chat.html">Chat History</a></li>
                 <li id="nav-logout" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
                 <li id="nav-greeting" style="color:white;font-size:20px;font-weight:500;padding:8px 15px;"></li>
             </ul>
         </div>
     </nav>
 
-    <div class="chat-page">
-        <aside class="chat-sidebar">
-            <h2>Conversation History</h2>
+    <!-- ── Compare model selection modal ── -->
+    <div id="compareModal">
+        <div id="compareModalBox">
+            <h2>🐸 Compare Models</h2>
+            <p>Select two models to compare side by side.</p>
 
-            <!-- Search bar for past conversations -->
+            <label style="font-weight:bold;">Model A</label>
+            <select id="compareModelA"></select>
+
+            <label style="font-weight:bold;">Model B</label>
+            <select id="compareModelB"></select>
+
+            <br>
+            <button id="startCompareBtn"  onclick="startCompare()">Start Comparing</button>
+            <button id="cancelCompareBtn" onclick="closeCompareModal()">Cancel</button>
+        </div>
+    </div>
+
+    <div class="chat-page">
+        <!-- ── Sidebar ── -->
+        <aside class="chat-sidebar">
+            <!-- History tab switcher -->
+            <div class="history-tabs">
+                <button id="tabRegular"    class="active" onclick="switchTab('regular')">Prompt History</button>
+                <button id="tabComparison"            onclick="switchTab('comparison')">Comparison History</button>
+            </div>
+
+            <!-- Search bar -->
             <div class="chat-search-row">
                 <input type="text" id="historySearch" placeholder="Search history..." oninput="searchConversations()">
                 <button onclick="searchConversations()">Search</button>
             </div>
 
-            <!-- Holds all saved conversations -->
+            <!-- Conversation list -->
             <div id="conversationList" class="conversation-list"></div>
         </aside>
 
+        <!-- ── Main chat area ── -->
         <main class="chat-main">
             <div class="chat-header">
                 <h1>Ask Frog Prompt</h1>
                 <button id="newChatBtn" onclick="startNewConversation()">New Chat</button>
             </div>
 
-            <!-- Shows selected conversation messages -->
+            <!-- Compare mode banner -->
+            <div id="compareBanner"></div>
+
+            <!-- Message display -->
             <div id="chatWindow" class="chat-window"></div>
 
-            <!-- Error message area -->
+            <!-- Error/status -->
             <div id="chatError" style="color:red; min-height:20px; margin-top:8px;"></div>
 
-            <!-- Message input area -->
-            <div class="chat-input-row">
-                <input type="text" id="chatInput" placeholder="Type your question here...">
+            <!-- Input row: model picker + compare button + text + send -->
+            <div class="chat-input-row" style="gap:8px;align-items:center;">
+                <select id="modelSelect" title="Select model"></select>
+                <button id="compareBtn" onclick="toggleCompare()">Compare Models</button>
+                <input type="text" id="chatInput" placeholder="Type your question here..." style="flex:1;">
                 <button onclick="sendMessage()">Send</button>
             </div>
         </main>
@@ -60,19 +183,13 @@
 
     <script src="client.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const input = document.getElementById('chatInput');
-
-            // Send on Enter key
-            input.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-                    sendMessage();
-                }
-            });
-
-            loadConversations();
-        });
+        // tab switching helper (keeps active style in sync)
+        function switchTab(tab) {
+            const isComparison = tab === 'comparison';
+            document.getElementById('tabRegular').classList.toggle('active', !isComparison);
+            document.getElementById('tabComparison').classList.toggle('active', isComparison);
+            loadConversations(isComparison);
+        }
     </script>
 </body>
 
