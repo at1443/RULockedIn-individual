@@ -5,9 +5,9 @@ Feature: Character counter on chat input
 
   Scenario: Counter shows zero when page loads
     Given I am logged in and on the chat page
-    Then I should see a character counter showing "0 / 500 characters"
+    Then I should see a character counter showing "0 / 1000 characters"
 
   Scenario: Counter updates as user types
     Given I am logged in and on the chat page
     When I fill in "chatInput" with "hello"
-    Then I should see a character counter showing "5 / 500 characters"
+    Then I should see a character counter showing "5 / 1000 characters"
