@@ -458,6 +458,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         chatInput.addEventListener('keydown', e => {
             if (e.key === 'Enter') { e.preventDefault(); sendMessage(); }
         });
+
+        chatInput.addEventListener('input', updateCharCounter);
+    }
+
+    function updateCharCounter() {
+        const input = document.getElementById('chatInput');
+        const counter = document.getElementById('charCounter');
+        if (!input || !counter) return;
+
+        const current = input.value.length;
+        const max = 1000;
+
+        counter.textContent = `${current} / ${max} characters`;
+        counter.style.color = current >= max ? 'red' : '#555';
     }
 
     const historySearch = document.getElementById('historySearch');
