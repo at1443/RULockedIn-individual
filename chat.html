@@ -175,7 +175,15 @@
             <div class="chat-input-row" style="gap:8px;align-items:center;">
                 <select id="modelSelect" title="Select model"></select>
                 <button id="compareBtn" onclick="toggleCompare()">Compare Models</button>
-                <input type="text" id="chatInput" placeholder="Type your question here..." style="flex:1;">
+                <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+                <input type="text" id="chatInput" 
+                    placeholder="Type your question here..." 
+                    style="width:100%;padding:8px;border-radius:8px;border:1px solid #8cc099;"
+                    maxlength="1000">
+                <span id="charCounter" style="font-size:11px;color:#555;text-align:right;">
+                    0 / 1000 characters
+                </span>
+            </div>
                 <button onclick="sendMessage()">Send</button>
             </div>
         </main>
