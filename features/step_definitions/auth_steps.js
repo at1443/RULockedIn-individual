@@ -19,7 +19,7 @@ let page;
 
 // ── Lifecycle ─────────────────────────────────────────────────────────────────
 
-Before(async () => {
+Before(async function () {
     // Clean up test account so signup scenario can always run fresh
     const client = new MongoClient(process.env.MONGO_URI, {
         serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true }
@@ -31,29 +31,29 @@ Before(async () => {
         await client.close();
     }
 
-    browser = await puppeteer.launch({
+    this.browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
-    page = await browser.newPage();
+    this.page = await this.browser.newPage();
 });
 
-After(async () => {
-    if (browser) await browser.close();
+After(async function () {
+    if (this.browser) await this.browser.close();
 });
 
 // ── Given ─────────────────────────────────────────────────────────────────────
 
-Given('I navigate to the home page', async () => {
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'domcontentloaded' });
+Given('I navigate to the home page', async function () {
+    await this.page.goto(`${BASE_URL}/`, { waitUntil: 'domcontentloaded' });
 });
 
-Given('I am on the sign up page', async () => {
-    await page.goto(`${BASE_URL}/signUp.html`, { waitUntil: 'domcontentloaded' });
+Given('I am on the sign up page', async function () {
+    await this.page.goto(`${BASE_URL}/signUp.html`, { waitUntil: 'domcontentloaded' });
 });
 
-Given('I am on the login page', async () => {
-    await page.goto(`${BASE_URL}/logIn.html`, { waitUntil: 'domcontentloaded' });
+Given('I am on the login page', async function () {
+    await this.page.goto(`${BASE_URL}/logIn.html`, { waitUntil: 'domcontentloaded' });
 });
 
 // ── When ──────────────────────────────────────────────────────────────────────
